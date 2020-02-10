@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/restaurantStyles.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+
+    <style>
+        .btn {
+            background-color: #776274;
+            border: none;
+            
+        }
+        .btn:hover {
+            background-color: #c8cc92;
+        }
+        .button {
+            margin-left: auto;
+            margin-right: auto;
+            width: 30%;
+        }
+        .col:first-child {
+            text-align: right;
+        }
+        legend, label {
+            font-size: 1.1em;
+        }
+
+        label.required{
+            font-weight: bold;
+            color: lightcoral;
+        }
+
+    </style>
+    <script>
+        function clearErrors() {
+            for (var loopCounter = 0; loopCounter < document.forms["contactInfo"].elements.length; loopCounter++){
+            if (document.forms["contactInfo"].elements[loopCounter].parentElement.className.indexOf("has") != -1){
+            
+            document.forms["contactInfo"].elements[loopCounter].parentElement.className = "form-row form-group";
+                }
+            }
+        }
+        function resetForm() {
+            clearErrors();
+            document.forms["contactInfo"]["Name"].value = "";
+            document.forms["contactInfo"]["email"].value = "";
+            document.forms["contactInfo"]["Name"].focus();
+        }
+
+        function validateItems() {
+            clearErrors();
+            var Name= document.forms["contactInfo"]["Name"].value;
+            var email= document.forms["contactInfo"]["email"].value;
+            var phone = document.forms["contactInfo"]["phone"].value;
+            if (Name == "") {
+                alert("Name is required to submit form");
+                document.forms["contactInfo"]["Name"].parentElement.className = "form-row form-group has-error";
+                document.forms["contactInfo"]["Name"].focus();
+                return false;
+            }
+            if (email == "") {
+                alert("Email is required to submit form");
+                document.forms["contactInfo"]["email"].parentElement.className = "form-row form-group has-error";
+                document.forms["contactInfo"]["email"].focus();
+                return false;
+            }
+            if (phone = isNaN(phone)) {
+                alert("Phone must be filled in with a number.");
+                document.forms["contactInfo"]["phone"].parentElement.className = "form-row form-group has-error";
+                document.forms["contactInfo"]["phone"].focus();
+                return false;
+            }
+        }
+        function javaEnable() {
+            alert('This site works best with JavaScript enabled');
+        }
+        
+    </script>
+
+</head>
+<body onload="return javaEnable()">
+    <header>
+        <h1>George the Pub</h1>
+        <h2>Restaurant Bar</h2>
+    </header>
+    <nav class="nav nav-pills nav-justified">
+        <a class="nav-item nav-link" href="index.html">Home</a>
+        <a class="nav-item nav-link" href="menu.html">Menu</a>
+        <a class="nav-item nav-link active" href="contact.html">Contact Us</a>
+    </nav>
+    <article class="container">
+        <form name="contactInfo" action="submit.html" method="POST" onsubmit="return validateItems();" onreset="resetForm();">
+            <div class="form-row form-group">
+                <div class="col">
+                    <label class="required" for="Name">Name:</label>
+                </div>
+                <div class="col">
+                    <input type="text" id="Name" name="Name"><br/>
+                </div>
+            </div>
+            <div class="form-row form-group">
+                <div class="col">
+                    <label class="required" for="email">Email:</label>
+                </div>
+                <div class="col">
+                    <input type="text" id="email" name="email"><br/>
+                </div>
+            </div>
+            <div class="form-row form-group">
+                <div class="col">
+                    <label for="phone">Phone:</label>
+                </div>
+                <div class="col">
+                    <input type="text" name="phone" id="phone"><br/>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                    <label for="contact">Reason for Inquiry</label>
+                </div>
+                <div class="col">
+                    <select name="contact" id="contact">
+                        <option value="default">Catering</option>
+                        <option value="party">Private Party</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="other">Other</option>
+                    </select><br>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                    <label for="info">Additional Information</label>
+                </div>
+                <div class="col">
+                    <textarea name="info" id="info"></textarea><br/>
+                </div>
+            </div>
+
+            <fieldset>
+                <div class="form-row">
+                    <div class="col">
+                        <legend>Have you been to the restaurant?</legend>
+                    </div>
+                    <div class="col">
+                        <input type="radio" name="been" id="choice1" value="no" checked />
+                        <label for="choice1">No</label>
+                        <input type="radio" name="been" id="choice2" value="yes">
+                        <label for="choice2">Yes</label>
+                    </div>
+                </div>
+            </fieldset>
+            
+
+            <fieldset>
+                <div class="form-row">
+                    <div class="col">
+                        <legend>Best days to contact you: </legend>
+                    </div>
+                    <div class="col">
+                        <input type="checkbox" name="day" id="monday" value="monday">
+                        <label for="frontEnd">M</label>
+                        <input type="checkbox" name="day" id="tuesday" value="tuesday">
+                        <label for="backEnd">T</label>
+                        <input type="checkbox" name="day" id="wednesday" value="wednesday">
+                        <label for="database">W</label>
+                        <input type="checkbox" name="day" id="thursday" value="thursday">
+                        <label for="frontEnd">Th</label>
+                        <input type="checkbox" name="day" id="friday" value="friday">
+                        <label for="frontEnd">F</label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="button">
+                <input type="submit" class="btn btn-primary btn-block" name="submit" value="Send Request"/>
+            </div>
+        </form>
+
+    </article>
+    <footer>
+        <hr>
+        <p>314 Cue T Pie Ave, Louisville, KY 40206</p>
+        <p>(502)455-6899</p>
+        <hr>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
